@@ -1,0 +1,8 @@
+新域名生效之后，这个时候在浏览器中输入新域名和旧域名，都可以打开原来的网站。如果旧域名已经失效，比如说已经过期，或者已经解析到其他地方等，那么网站虽然可以打开，但网页看起来会比较乱；这是因为网页无法正常加载WordPress主题的样式表。
+第三步，登录主机管理系统，进入phpmyadmin，选择WordPress网站所使用的数据库。如果你不确定WordPress使用的是哪一个数据库，可以查看WordPress目录下的wp-config.php配置文件，查看其中的 DB_NAME 设置。
+
+
+UPDATE wp_options SET option_value = replace(option_value, 'www.mydomain.com','www.newdomain.com') ;
+UPDATE wp_posts SET post_content = replace(post_content, 'www.mydomain.com','www.newdomain.com') ;
+UPDATE wp_comments SET comment_content = replace(comment_content, 'www.mydomain.com', 'www.newdomain.com') ;
+UPDATE wp_comments SET comment_author_url = replace(comment_author_url, 'www.mydomain.com', 'www.newdomain.com') ;
